@@ -13,7 +13,7 @@ Sentiment Checker is a module for sitecore that creates a shortcut on the review
 
 ## Screenshots
 
-![App Screenshot](https://cmscritic.com/ms-content/uploads/2021/03/sitecore-featured-image-1.jpg?format=auto&width=2048)
+![App Screenshot](https://github.com/Sitecore-Hackathon/2024-Sitecoreon/blob/main/assets/sitecore04.png)
 
 ## Documentation
 
