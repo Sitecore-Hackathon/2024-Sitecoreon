@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<control xmlns:def="Definition" xmlns="http://schemas.sitecore.net/Visual-Studio-Intellisense"
+         xmlns:x="http://www.sitecore.net/xaml">
+  <ShowSentiment>
+    <FormPage>
+	  <Script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></Script>
+      <Stylesheet Src="Dialogs.css" DeviceDependant="true" runat="server" />
+	  <!-- <Script src="https://cdn.plot.ly/plotly-latest.min.js"></Script> -->
+      <Script src="/sitecore modules/Shell/PowerShell/ShowSentiment.js"></Script>
+	  <Script src="https://kit.fontawesome.com/33a214bdf3.js" crossorigin="anonymous"></Script>
+
+      <Stylesheet>
+		.menu {
+			width:25%;
+			height:100%;
+			float:left;
+			border-right:1px solid black
+		}
+		.charts {
+			width:75%;
+			height:100;
+			float:right;
+		}
+		h3 {
+		    text-align: center;
+			font-size: 2em;
+		}
+		.canvas-holder {
+			width:50%;
+			float:left;
+		}
+		.menuitems li {
+			border: 1px solid black;
+			border-radius: 3px;
+			padding: 5px;
+			margin: 5px;
+			width: auto;
+			cursor: pointer;
+		}
+		.menuitems li.active {
+			background-color: rgb(31, 119, 180);
+			color: white;
+		}
+		.scFlexColumnContainer > div.emotionShower{
+			padding: 10px 10px;
+			padding-left:0px;
+			max-width: 400px;
+			margin: auto !important;
+			overflow-y: scroll;
+			height: 400px;
+		}
+		.emotion-item{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 20px;
+			align-items: center;
+			margin-bottom: 10px;
+			background-color: #a3a3a32b;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		.emotion-icon{
+			max-width: 200px;
+		}
+		.fa-regular{
+			font-size: 35px;
+		}
+		.emotion-score p{
+			font-weight: bold;
+			font-size: 18px;
+			text-transform: capitalize;
+		}
+		.emotion-score {
+			width: 100%;
+		}
+		.emotionShowInput{
+			font-size:25px;
+
+		}
+		.scFlexColumnContainer > div.input-text{
+			padding-top: 20px;
+			max-width: 400px;
+			margin: auto !important;
+		}
+		.label{
+			font-size: 14px;
+			text-transform: uppercase;
+			font-weight: bold;
+			max-width: 400px;
+			margin: auto;
+		}
+      </Stylesheet>
+
+      <Border class="scFlexColumnContainer scStretch">
+        <Border class="scDialogHeader scConfirmChoiceHeader">
+          <ThemedImage Src="powershell/32x32/powershell.png" class="psVarPromptHeaderIcon" Visible="false" />
+          <Border>
+            <Border Class="DialogHeader">
+			  Emotion Checker 
+            </Border>
+            <Border Class="DialogHeaderDescription">
+              Let's check the content emotion
+            </Border>
+			
+          </Border>
+        </Border>
+		<div Class="input-text">
+		<p Class="label">Text Input:</p>
+			<h2 Class="emotionShowInput"></h2>
+		</div>
+		
+		<p Class="label">Score:</p>
+		<div Class='emotionShower'></div>
+      
+      </Border>
+    </FormPage>
+	
+  </ShowSentiment>
+</control>
