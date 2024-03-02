@@ -31,7 +31,7 @@ The module requires Sitecore Powershell Extensions It is only tested with versio
 
 ## Installation
 
-1. Use the Sitecore Installation wizard to install the package
+1. Use the Sitecore Installation wizard to install the package [SitecoreonModule-1.0.0 1.zip](https://github.com/Sitecore-Hackathon/2024-Sitecoreon/tree/main/sc.package/SitecoreonModule-1.0.0.zip)
 2. Once the package has been installed all integration points in SPE needs to be rebuilt
    ![App Screenshot](https://github.com/Sitecore-Hackathon/2024-Sitecoreon/blob/main/assets/sitecore06.png)
 3. Rebuild integration points
@@ -71,8 +71,7 @@ Steps to use it:
 5. Thats it , you get in percentage the context analysis of the Sentiment of that text field
    ![App Screenshot](https://github.com/Sitecore-Hackathon/2024-Sitecoreon/blob/main/assets/sitecore04.png)
 
-Video
-Video Demostration
+## Video
 
 ## API Reference
 
