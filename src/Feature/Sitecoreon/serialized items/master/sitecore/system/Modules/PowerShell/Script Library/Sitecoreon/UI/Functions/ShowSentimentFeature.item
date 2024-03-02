@@ -1,0 +1,133 @@
+----item----
+version: 1
+id: {5ED8A8A9-FB97-4869-B3BA-2BE590739991}
+database: master
+path: /sitecore/system/Modules/PowerShell/Script Library/Sitecoreon/UI/Functions/ShowSentimentFeature
+parent: {2543802B-7960-4A27-8AA1-C689EE04DFB9}
+name: ShowSentimentFeature
+master: {00000000-0000-0000-0000-000000000000}
+template: {DD22F1B3-BD87-4DB2-9E7D-F7A496888D43}
+templatekey: PowerShell Script
+
+----field----
+field: {B1A94FF0-6897-47C0-9C51-AA6ACB80B1F0}
+name: Script
+key: script
+content-length: 2020
+
+Import-Function -Name InvokeSentimentAPI
+Import-Function -Name RenderSentimentFeature
+
+<#
+    .SYNOPSIS
+        Promps for which fields' value to analyze on Sentiments API. Then runs analysis and shows result with emoticons
+		Note: Code based on this project https://github.com/Sitecore-Hackathon/2019-The-A-team-defenders-of-GOTO/tree/master
+#>
+function ShowSentimentFeature {
+	$item = Get-Item -Path .
+	
+	#Find all fields of type *Text* on the item
+	$options = @{}
+    $fields = Get-ItemField -Item $item -ReturnType Field
+	foreach($field in $fields)
+	{
+	    if ($field.Type.Contains('Text')) {
+	        $options[$field.Name] = $field.Name
+	    }
+	}
+	
+    if ($options.Length -eq 0) {
+        #If no fields were found we stop
+        Show-Alert("No text fields found")  
+    } else {
+        #Prompt user to select field
+    	$props = @{
+    		Parameters = @(
+    			@{Name="selectedOption"; Title="Select a field"; Options=$options; Tooltip="Select field"}
+    		)
+    		Title = "Field selector"
+    		Description = "Select a field for sentiment analysis."
+    		Width = 300
+    		Height = 300
+    		ShowHints = $true
+    	}
+    	Read-Variable @props
+		
+
+    	$fieldValue = $item.Fields[$selectedOption].Value
+        #Remove all HTML tags from the field, to analyze only the text
+        $doc = New-Object HtmlAgilityPack.HtmlDocument
+        $doc.LoadHtml($fieldValue)
+	
+        
+        #Invoke the Sentiment analyzer
+    	$result = InvokeSentimentAPI -Text  $doc.DocumentNode.InnerText
+
+
+$aux1= $doc.DocumentNode.InnerText.Substring(0,50)+".........."
+
+If ($aux1-gt 50) {
+$aux2= $doc.DocumentNode.InnerText.Substring(0,50)+".........."
+
+    Invoke-Javascript -Script "sessionStorage.setItem('text_input', '$($aux2)');"
+}
+else
+{
+$aux3= $doc.DocumentNode.InnerText
+
+Invoke-Javascript -Script "sessionStorage.setItem('text_input', '$($aux3)');"
+}
+
+
+        #Render the result
+        RenderSentimentFeature -Sentiments $result
+    }
+	Close-Window
+}
+----version----
+language: en
+version: 1
+revision: 4955d16c-ffda-43bc-ba27-095104e63e97
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 18
+
+sitecore\migration
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20240302T141508Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 18
+
+sitecore\migration
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+4955d16c-ffda-43bc-ba27-095104e63e97
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20240302T223148Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 18
+
+sitecore\migration

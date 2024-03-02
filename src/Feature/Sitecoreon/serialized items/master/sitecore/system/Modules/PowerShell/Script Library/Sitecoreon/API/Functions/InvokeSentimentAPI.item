@@ -1,0 +1,102 @@
+----item----
+version: 1
+id: {AEFD0138-EB47-4001-A7B8-F489B64A4E58}
+database: master
+path: /sitecore/system/Modules/PowerShell/Script Library/Sitecoreon/API/Functions/InvokeSentimentAPI
+parent: {60B6C39D-DDB7-4AFA-92C5-3DB699EE0014}
+name: InvokeSentimentAPI
+master: {00000000-0000-0000-0000-000000000000}
+template: {DD22F1B3-BD87-4DB2-9E7D-F7A496888D43}
+templatekey: PowerShell Script
+
+----field----
+field: {B1A94FF0-6897-47C0-9C51-AA6ACB80B1F0}
+name: Script
+key: script
+content-length: 1149
+
+Import-Function -Name GetSettingField
+<#
+    .SYNOPSIS
+        Analyzes the sentimental analysis for a text
+		Note: Code based on this project https://github.com/Sitecore-Hackathon/2019-The-A-team-defenders-of-GOTO/tree/master
+    
+    .PARAMETER Text
+        Specifies the text to analyze
+    
+    .OUTPUT
+        - Array of sentiments
+#>
+function InvokeSentimentAPI {
+    #($Text)
+    [CmdletBinding()]
+    param(
+        [ValidateNotNullOrEmpty()]
+        [string]$Text
+    )
+	$endpoint = "$(GetSettingField -Field "ApiUrlSentiment")"
+    $apiKey = "$(GetSettingField -Field "ApiKeySentiment")"
+
+    #Build the needed parameters for the request
+    $headers = @{ Authorization = "Bearer $($apiKey)" }
+    
+    $json = @{ text = $Text } | ConvertTo-Json
+
+    #Invoke the webrequest with error handling
+    $response = try {
+        Invoke-WebRequest -Uri $endpoint -Method POST -ContentType "application/json" -Body $json -Headers $headers -UseBasicParsing
+    }
+    catch [System.Net.WebException] { 
+        Show-Alert( $_.Exception)        
+    }
+
+    #return the content to the caller
+	$response.Content	
+}
+----version----
+language: en
+version: 1
+revision: 04ef3d74-5bf8-42c5-b85f-18d3b0400ced
+
+----field----
+field: {52807595-0F8F-4B20-8D2A-CB71D28C6103}
+name: __Owner
+key: __owner
+content-length: 18
+
+sitecore\migration
+----field----
+field: {25BED78C-4957-4165-998A-CA1B52F67497}
+name: __Created
+key: __created
+content-length: 16
+
+20240302T144524Z
+----field----
+field: {5DD74568-4D4B-44C1-B513-0AF5F4CDA34F}
+name: __Created by
+key: __created by
+content-length: 18
+
+sitecore\migration
+----field----
+field: {8CDC337E-A112-42FB-BBB4-4143751E123F}
+name: __Revision
+key: __revision
+content-length: 36
+
+04ef3d74-5bf8-42c5-b85f-18d3b0400ced
+----field----
+field: {D9CF14B1-FA16-4BA6-9288-E8A174D4D522}
+name: __Updated
+key: __updated
+content-length: 16
+
+20240302T220141Z
+----field----
+field: {BADD9CF9-53E0-4D0C-BCC0-2D784C282F6A}
+name: __Updated by
+key: __updated by
+content-length: 18
+
+sitecore\migration
