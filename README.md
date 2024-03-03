@@ -11,6 +11,13 @@
 
 Sentiment Checker is a module for sitecore that creates a shortcut on the review tab of the content editor and let you select a text content field to check on Sentiment intent of a text.
 
+Example:
+
+-   Text with happy Sentiment
+    ![App Screenshot](https://github.com/Sitecore-Hackathon/2024-Sitecoreon/blob/main/assets/sitecore07.png)
+-   Text with sad Sentiment
+    ![App Screenshot](https://github.com/Sitecore-Hackathon/2024-Sitecoreon/blob/main/assets/sitecore08.png)
+
 ## Screenshots
 
 ![App Screenshot](https://github.com/Sitecore-Hackathon/2024-Sitecoreon/blob/main/assets/sitecore04.png)
