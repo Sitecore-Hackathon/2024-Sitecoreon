@@ -37,6 +37,14 @@ The module requires Sitecore Powershell Extensions It is only tested with versio
 3. Rebuild integration points
 4. The module is good to go!
 
+Note: If required change this line on the web.config in order to overwrite Content Security Policy restrictions
+
+```
+<add name="Content-Security-Policy"
+
+						value="default-src 'self' 'unsafe-inline' 'unsafe-eval' *.fontawesome.com *.cloudflare.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com *.fontawesome.com; upgrade-insecure-requests; block-all-mixed-content;"/>
+```
+
 ## Configuration
 
 For the module to work it need a valid API key from [https://nlpcloud.com/](https://nlpcloud.com/).
