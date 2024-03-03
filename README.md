@@ -109,6 +109,6 @@ Steps to use it:
 
 ## Authors
 
--   [Mariela Pancho](https://www.github.com/octokatherine)
--   [Andres Miño](https://www.github.com/octokatherine)
--   [Francisco Cornejo](https://www.github.com/octokatherine)
+-   [Mariela Pancho](https://github.com/mpancho)
+-   [Andres Miño](https://github.com/asmino1701)
+-   [Francisco Cornejo](https://github.com/franciscoDeskmultimedia)
