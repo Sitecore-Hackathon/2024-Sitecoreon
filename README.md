@@ -41,8 +41,8 @@ Note: If required change this line on the web.config in order to overwrite Conte
 
 ```
 <add name="Content-Security-Policy"
-
-						value="default-src 'self' 'unsafe-inline' 'unsafe-eval' *.fontawesome.com *.cloudflare.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com *.fontawesome.com; upgrade-insecure-requests; block-all-mixed-content;"/>
+    value="default-src 'self' 'unsafe-inline' 'unsafe-eval' *.fontawesome.com *.cloudflare.com; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' 'unsafe-inline' https://fonts.gstatic.com *.fontawesome.com; upgrade-insecure-requests; block-all-mixed-content;"
+/>
 ```
 
 ## Configuration
